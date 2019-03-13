@@ -67,10 +67,10 @@ class TestCommand(TestClass):
 
 cmdclass = {'test': TestCommand}
 
-setup(name="perceval-finoss",
-      description="Bundle of Perceval backends for FINOSS ecosystem",
+setup(name="perceval-finos",
+      description="Bundle of Perceval backends for FINOS ecosystem",
       long_description=long_description,
-      url="https://github.com/Bitergia/grimoirelab-perceval-finoss",
+      url="https://github.com/Bitergia/grimoirelab-perceval-finos",
       version=version,
       author="Bitergia",
       author_email="sduenas@bitergia.com",
@@ -82,11 +82,11 @@ setup(name="perceval-finoss",
           'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
           'Programming Language :: Python :: 3'
       ],
-      keywords="development repositories analytics finoss",
+      keywords="development repositories analytics finos",
       packages=[
           'perceval',
           'perceval.backends',
-          'perceval.backends.finoss'
+          'perceval.backends.finos'
       ],
       namespace_packages=[
           'perceval',

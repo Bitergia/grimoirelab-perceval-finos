@@ -1,12 +1,12 @@
-# perceval-finoss [![Build Status](https://travis-ci.org/Bitergia/grimoirelab-perceval-finoss.svg?branch=master)](https://travis-ci.org/Bitergia/grimoirelab-perceval-finoss) [![Coverage Status](https://img.shields.io/coveralls/Bitergia/grimoirelab-perceval-finoss.svg)](https://coveralls.io/r/Bitergia/grimoirelab-perceval-finoss?branch=master)
+# perceval-finos [![Build Status](https://travis-ci.org/Bitergia/grimoirelab-perceval-finos.svg?branch=master)](https://travis-ci.org/Bitergia/grimoirelab-perceval-finos) [![Coverage Status](https://img.shields.io/coveralls/Bitergia/grimoirelab-perceval-finos.svg)](https://coveralls.io/r/Bitergia/grimoirelab-perceval-finos?branch=master)
 
-Bundle of Perceval backends for FINOSS ecosystem.
+Bundle of Perceval backends for FINOS ecosystem.
 
 ## Backends
 
 The backends currently managed by this package support the next repositories:
 
-* FINOSS meetings attendance
+* FINOS meetings attendance
 
 ## Requirements
 
@@ -20,7 +20,7 @@ The backends currently managed by this package support the next repositories:
 To install this package you will need to clone the repository first:
 
 ```
-$ git clone https://github.com/Bitergia/grimoirelab-perceval-finoss.git
+$ git clone https://github.com/Bitergia/grimoirelab-perceval-finos.git
 ```
 
 Then you can execute the following commands:
@@ -38,7 +38,7 @@ $ pip3 install -e .
 
 ## Examples
 
-### FINOSS meetings attendance
+### FINOS meetings attendance
 
 ```
 $ perceval 
