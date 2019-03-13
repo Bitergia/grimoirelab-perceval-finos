@@ -38,11 +38,18 @@ $ pip3 install -e .
 
 ## Examples
 
-### FINOS meetings attendance
+### FINOS meetings
+
+#### Locating via URL
 
 ```
-$ perceval 
+$ perceval finosmeetings https://gist.githubusercontent.com/maoo/27db80e0dba349caf95cd3f2af909fe8/raw/d8bdc91ed1ac2c0e5b8e0dc95d5248527c88260d/finos-meetings.csv
+```
 
+#### Locating via file path
+
+```
+$ perceval finosmeetings file:///Users/m/w/projects/metadata-tool/roster-data.csv
 ```
 
 ## License
