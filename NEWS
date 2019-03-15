@@ -1,1 +1,8 @@
 # Releases
+
+## perceval-finos 0.1 - (2019-03-15)
+
+** New features and improvements: **
+
+* New set of backends added:
+   - FINOS Meetings
