@@ -179,6 +179,7 @@ class FinosMeetings(Backend):
 
     def _init_client(self, from_archive=False):
         """Init client"""
+
         return FinosMeetingsClient(self.origin, SEPARATOR, SKIP_HEADER)
 
 
@@ -209,7 +210,8 @@ class FinosMeetingsClient(HttpClient):
             open(self.file_path, 'wb').write(response.content)
 
     def get_entries(self):
-        """ Retrieve all entries from a CVS file"""
+        """Retrieve all entries from a CVS file"""
+
         self.session = None
         with open(self.file_path, newline='') as csv_content:
             reader = csv.reader(csv_content, delimiter=SEPARATOR)
