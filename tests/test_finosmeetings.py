@@ -114,9 +114,12 @@ class TestFinosMeetingsBackend(unittest.TestCase):
         self.assertEqual(len(http_requests), 1)
 
         # Test metadata
-        expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob', 'Data Tech', 'Data Tech PMC', '2018-09-28'),
-                    ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech', 'Security Reference Data', '2018-12-11'),
-                    ('maoo@finos.org', 'Maurizio Pillitu', 'maoo', 'FDC3', 'FDC3 PMC', '2018-10-19')]
+        expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob',
+                     'Data Tech', 'Data Tech PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
+                    ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech',
+                     'Security Reference Data', '2018-12-11', '2018-12-11T00:00:00+00:00'),
+                    ('maoo@finos.org', 'Maurizio Pillitu', 'maoo',
+                     'FDC3', 'FDC3 PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
 
         for x in range(len(expected)):
             entry = entries[x]['data']
@@ -129,6 +132,7 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['program'], expected[x][3])
             self.assertEqual(entry['activity'], expected[x][4])
             self.assertEqual(entry['date'], expected[x][5])
+            self.assertEqual(entry['date_iso_format'], expected[x][6])
 
     @httpretty.activate
     def test_fetch_from_file(self):
@@ -141,9 +145,12 @@ class TestFinosMeetingsBackend(unittest.TestCase):
         self.assertEqual(len(entries), 3)
 
         # Test metadata
-        expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob', 'Data Tech', 'Data Tech PMC', '2018-09-28'),
-                    ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech', 'Security Reference Data', '2018-12-11'),
-                    ('maoo@finos.org', 'Maurizio Pillitu', 'maoo', 'FDC3', 'FDC3 PMC', '2018-10-19')]
+        expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob',
+                     'Data Tech', 'Data Tech PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
+                    ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech',
+                     'Security Reference Data', '2018-12-11', '2018-12-11T00:00:00+00:00'),
+                    ('maoo@finos.org', 'Maurizio Pillitu', 'maoo',
+                     'FDC3', 'FDC3 PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
 
         for x in range(len(expected)):
             entry = entries[x]['data']
@@ -156,6 +163,7 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['program'], expected[x][3])
             self.assertEqual(entry['activity'], expected[x][4])
             self.assertEqual(entry['date'], expected[x][5])
+            self.assertEqual(entry['date_iso_format'], expected[x][6])
 
     @httpretty.activate
     def test_fetch_empty(self):

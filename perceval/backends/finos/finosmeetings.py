@@ -41,6 +41,8 @@ CSV_HEADER = 'email,name,org,githubid,program,activity,date'
 SKIP_HEADER = True
 ID_COLUMNS = 'email,name,date'
 DATE_COLUMN = 'date'
+TIMESTAMP = 'timestamp'
+DATE_ISO = 'date_iso_format'
 
 logger = logging.getLogger(__name__)
 
@@ -109,7 +111,8 @@ class FinosMeetings(Backend):
                 if column == DATE_COLUMN:
                     try:
                         dt = str_to_datetime(value)
-                        ret['timestamp'] = datetime_to_utc(dt).timestamp()
+                        ret[DATE_ISO] = datetime_to_utc(dt).isoformat()
+                        ret[TIMESTAMP] = datetime_to_utc(dt).timestamp()
                     except InvalidDateError:
                         logger.warning("Skipping entry due to wrong date format: '%s'", value)
                         nskipped += 1
