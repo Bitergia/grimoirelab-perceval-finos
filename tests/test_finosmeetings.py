@@ -129,8 +129,8 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['name'], expected[x][1])
             self.assertEqual(entry['org'], 'FINOS')
             self.assertEqual(entry['githubid'], expected[x][2])
-            self.assertEqual(entry['program'], expected[x][3])
-            self.assertEqual(entry['activity'], expected[x][4])
+            self.assertEqual(entry['cm_program'], expected[x][3])
+            self.assertEqual(entry['cm_title'], expected[x][4])
             self.assertEqual(entry['date'], expected[x][5])
             self.assertEqual(entry['date_iso_format'], expected[x][6])
 
@@ -160,8 +160,8 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['name'], expected[x][1])
             self.assertEqual(entry['org'], 'FINOS')
             self.assertEqual(entry['githubid'], expected[x][2])
-            self.assertEqual(entry['program'], expected[x][3])
-            self.assertEqual(entry['activity'], expected[x][4])
+            self.assertEqual(entry['cm_program'], expected[x][3])
+            self.assertEqual(entry['cm_title'], expected[x][4])
             self.assertEqual(entry['date'], expected[x][5])
             self.assertEqual(entry['date_iso_format'], expected[x][6])
 

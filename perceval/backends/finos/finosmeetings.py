@@ -37,9 +37,9 @@ from ...client import HttpClient
 
 CATEGORY_ENTRY = "finos-meeting-entry"
 SEPARATOR = ','
-CSV_HEADER = 'email,name,org,githubid,program,activity,date'
+CSV_HEADER = 'email,name,org,githubid,cm_program,cm_title,date'
 SKIP_HEADER = True
-ID_COLUMNS = 'email,name,date,program,activity'
+ID_COLUMNS = 'email,name,date,cm_program,cm_title'
 DATE_COLUMN = 'date'
 TIMESTAMP = 'timestamp'
 DATE_ISO = 'date_iso_format'
