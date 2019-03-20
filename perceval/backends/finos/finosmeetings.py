@@ -37,9 +37,9 @@ from ...client import HttpClient
 
 CATEGORY_ENTRY = "finos-meeting-entry"
 SEPARATOR = ','
-CSV_HEADER = 'email,name,org,githubid,program,activity,date'
+CSV_HEADER = 'email,name,org,githubid,cm_program,cm_title,date'
 SKIP_HEADER = True
-ID_COLUMNS = 'email,name,date,program,activity'
+ID_COLUMNS = 'email,name,date,cm_program,cm_title'
 DATE_COLUMN = 'date'
 TIMESTAMP = 'timestamp'
 DATE_ISO = 'date_iso_format'
@@ -61,7 +61,7 @@ class FinosMeetings(Backend):
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
     """
-    version = '0.1.0'
+    version = '0.2.0'
 
     CATEGORIES = [CATEGORY_ENTRY]
 
