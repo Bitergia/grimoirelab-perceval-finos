@@ -115,11 +115,11 @@ class TestFinosMeetingsBackend(unittest.TestCase):
 
         # Test metadata
         expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob',
-                     'Data Tech', 'Data Tech PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
+                     'Data Tech', 'Data Tech PMC', 'PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
                     ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech',
-                     'Security Reference Data', '2018-12-11', '2018-12-11T00:00:00+00:00'),
+                     'Security Reference Data', 'WORKING_GROUP', '2018-12-11', '2018-12-11T00:00:00+00:00'),
                     ('maoo@finos.org', 'Maurizio Pillitu', 'maoo',
-                     'FDC3', 'FDC3 PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
+                     'FDC3', 'FDC3 PMC', 'PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
 
         for x in range(len(expected)):
             entry = entries[x]['data']
@@ -131,8 +131,9 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['githubid'], expected[x][2])
             self.assertEqual(entry['cm_program'], expected[x][3])
             self.assertEqual(entry['cm_title'], expected[x][4])
-            self.assertEqual(entry['date'], expected[x][5])
-            self.assertEqual(entry['date_iso_format'], expected[x][6])
+            self.assertEqual(entry['cm_type'], expected[x][5])
+            self.assertEqual(entry['date'], expected[x][6])
+            self.assertEqual(entry['date_iso_format'], expected[x][7])
 
     @httpretty.activate
     def test_fetch_from_file(self):
@@ -146,11 +147,11 @@ class TestFinosMeetingsBackend(unittest.TestCase):
 
         # Test metadata
         expected = [('rob.underwood@finos.org', 'Rob Underwood', 'brooklynrob',
-                     'Data Tech', 'Data Tech PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
+                     'Data Tech', 'Data Tech PMC', 'PMC', '2018-09-28', '2018-09-28T00:00:00+00:00'),
                     ('tosha.ellison@finos.org', 'Tosha Ellison', '', 'Data Tech',
-                     'Security Reference Data', '2018-12-11', '2018-12-11T00:00:00+00:00'),
+                     'Security Reference Data', 'WORKING_GROUP', '2018-12-11', '2018-12-11T00:00:00+00:00'),
                     ('maoo@finos.org', 'Maurizio Pillitu', 'maoo',
-                     'FDC3', 'FDC3 PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
+                     'FDC3', 'FDC3 PMC', 'PMC', '2018-10-19', '2018-10-19T00:00:00+00:00')]
 
         for x in range(len(expected)):
             entry = entries[x]['data']
@@ -162,8 +163,9 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['githubid'], expected[x][2])
             self.assertEqual(entry['cm_program'], expected[x][3])
             self.assertEqual(entry['cm_title'], expected[x][4])
-            self.assertEqual(entry['date'], expected[x][5])
-            self.assertEqual(entry['date_iso_format'], expected[x][6])
+            self.assertEqual(entry['cm_type'], expected[x][5])
+            self.assertEqual(entry['date'], expected[x][6])
+            self.assertEqual(entry['date_iso_format'], expected[x][7])
 
     @httpretty.activate
     def test_fetch_empty(self):
