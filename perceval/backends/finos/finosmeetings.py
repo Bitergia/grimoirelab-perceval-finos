@@ -226,11 +226,11 @@ class FinosMeetingsCommand(BackendCommand):
 
     BACKEND = FinosMeetings
 
-    @staticmethod
-    def setup_cmd_parser():
+    @classmethod
+    def setup_cmd_parser(cls):
         """Returns the FinosMeetings argument parser."""
 
-        parser = BackendCommandArgumentParser()
+        parser = BackendCommandArgumentParser(cls.BACKEND.CATEGORIES)
 
         # Required arguments
         parser.parser.add_argument('uri',
