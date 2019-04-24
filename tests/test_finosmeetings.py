@@ -197,6 +197,7 @@ class TestFinosMeetingsCommand(unittest.TestCase):
 
         parser = FinosMeetingsCommand.setup_cmd_parser()
         self.assertIsInstance(parser, BackendCommandArgumentParser)
+        self.assertEqual(parser._categories, FinosMeetings.CATEGORIES)
 
         args = [MEETINGS_URL]
 
