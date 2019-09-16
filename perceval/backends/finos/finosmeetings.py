@@ -60,7 +60,7 @@ class FinosMeetings(Backend):
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
     """
-    version = '0.3.0'
+    version = '0.4.0'
 
     CATEGORIES = [CATEGORY_ENTRY]
 
