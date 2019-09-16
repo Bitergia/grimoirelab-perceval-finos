@@ -134,6 +134,19 @@ class TestFinosMeetingsBackend(unittest.TestCase):
             self.assertEqual(entry['date_iso_format'], expected[x][7])
 
     @httpretty.activate
+    def test_search_terms(self):
+        """Test whether the search_fields is properly set"""
+
+        configure_http_server()
+
+        finosmeetings = FinosMeetings(MEETINGS_URL)
+
+        entries = [entry for entry in finosmeetings.fetch()]
+
+        for e in entries:
+            self.assertEqual(finosmeetings.metadata_id(e['data']), e['search_fields']['item_id'])
+
+    @httpretty.activate
     def test_fetch_from_file(self):
         """Test whether a list of entries is returned from a file definition"""
 
