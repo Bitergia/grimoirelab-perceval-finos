@@ -229,7 +229,7 @@ class FinosMeetingsCommand(BackendCommand):
     def setup_cmd_parser(cls):
         """Returns the FinosMeetings argument parser."""
 
-        parser = BackendCommandArgumentParser(cls.BACKEND.CATEGORIES)
+        parser = BackendCommandArgumentParser(cls.BACKEND)
 
         # Required arguments
         parser.parser.add_argument('uri',
