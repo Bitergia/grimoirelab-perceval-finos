@@ -18,6 +18,7 @@
 # Authors:
 #     Maurizio Pillitu <maoo@finos.org>
 #     Santiago Dueñas <sduenas@bitergia.com>
+#     Quan Zhou <quan@bitergia.com>
 #
 
 import csv
@@ -59,13 +60,14 @@ class FinosMeetings(Backend):
     :param uri: URI pointer to FINOS meeting data
     :param tag: label used to mark the data
     :param archive: archive to store/retrieve items
+    :param ssl_verify: enable/disable SSL verification
     """
-    version = '0.4.0'
+    version = '0.5.0'
 
     CATEGORIES = [CATEGORY_ENTRY]
 
-    def __init__(self, uri, tag=None, archive=None):
-        super().__init__(uri, tag=tag, archive=archive)
+    def __init__(self, uri, tag=None, archive=None, ssl_verify=True):
+        super().__init__(uri, tag=tag, archive=archive, ssl_verify=ssl_verify)
         self.client = None
 
     def fetch(self, category=CATEGORY_ENTRY):
@@ -179,7 +181,7 @@ class FinosMeetings(Backend):
     def _init_client(self, from_archive=False):
         """Init client"""
 
-        return FinosMeetingsClient(self.origin, SEPARATOR, SKIP_HEADER)
+        return FinosMeetingsClient(self.origin, SEPARATOR, SKIP_HEADER, self.ssl_verify)
 
 
 def _parse_entries(rows):
@@ -198,13 +200,14 @@ class FinosMeetingsClient(HttpClient):
     :param uri: URI Pointer to CSV contents
     :param archive: an archive to store/read fetched data
     :param from_archive: it tells whether to write/read the archive
+    :param ssl_verify: enable/disable SSL verification
     """
-    def __init__(self, uri, archive=None, from_archive=False):
+    def __init__(self, uri, archive=None, from_archive=False, ssl_verify=True):
         if uri.startswith('file://'):
             self.file_path = uri.split('file://', 1)[1]
         else:
             self.file_path = tempfile.mkdtemp() + "/perceval-finos-meetings-backend-" + str(datetime_utcnow()) + ".csv"
-            super().__init__(uri, archive=archive, from_archive=from_archive)
+            super().__init__(uri, archive=archive, from_archive=from_archive, ssl_verify=ssl_verify)
             response = self.session.get(uri)
             open(self.file_path, 'wb').write(response.content)
 
@@ -229,7 +232,8 @@ class FinosMeetingsCommand(BackendCommand):
     def setup_cmd_parser(cls):
         """Returns the FinosMeetings argument parser."""
 
-        parser = BackendCommandArgumentParser(cls.BACKEND)
+        parser = BackendCommandArgumentParser(cls.BACKEND,
+                                              ssl_verify=True)
 
         # Required arguments
         parser.parser.add_argument('uri',
