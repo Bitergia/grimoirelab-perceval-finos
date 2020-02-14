@@ -18,6 +18,7 @@
 # Authors:
 #     Maurizio Pillitu <maoo@finos.org>
 #     Santiago Dueñas <sduenas@bitergia.com>
+#     Quan Zhou <quan@bitergia.com>
 #
 
 import os
@@ -88,6 +89,14 @@ class TestFinosMeetingsBackend(unittest.TestCase):
 
         self.assertTrue(finosmeetings.origin, MEETINGS_URL)
         self.assertIsNone(finosmeetings.client)
+        self.assertTrue(finosmeetings.ssl_verify)
+
+        # When ssl_verify is deactivated
+        finosmeetings = FinosMeetings(MEETINGS_URL, ssl_verify=False)
+
+        self.assertTrue(finosmeetings.origin, MEETINGS_URL)
+        self.assertIsNone(finosmeetings.client)
+        self.assertFalse(finosmeetings.ssl_verify)
 
     def test_has_archiving(self):
         """Test if it returns True when has_archiving is called"""
@@ -214,6 +223,13 @@ class TestFinosMeetingsCommand(unittest.TestCase):
 
         parsed_args = parser.parse(*args)
         self.assertEqual(parsed_args.uri, MEETINGS_URL)
+        self.assertTrue(parsed_args.ssl_verify)
+
+        args = [MEETINGS_URL, '--no-ssl-verify']
+
+        parsed_args = parser.parse(*args)
+        self.assertEqual(parsed_args.uri, MEETINGS_URL)
+        self.assertFalse(parsed_args.ssl_verify)
 
 
 class TestFinosMeetingsClient(unittest.TestCase):
@@ -224,6 +240,32 @@ class TestFinosMeetingsClient(unittest.TestCase):
     into account that the body returned on each request might not
     match with the parameters from the request.
     """
+    @httpretty.activate
+    def test_init(self):
+        """Test initialization"""
+        # Set up a mock HTTP server
+        body = read_file('data/finosmeetings/finosmeetings_entries.csv')
+        httpretty.register_uri(httpretty.GET,
+                               MEETINGS_URL,
+                               body=body, status=200)
+
+        finosmeetings = FinosMeetingsClient(MEETINGS_URL)
+
+        self.assertTrue(finosmeetings.base_url, MEETINGS_URL)
+        self.assertEqual(finosmeetings.max_retries, 5)
+        self.assertIsNone(finosmeetings.archive)
+        self.assertFalse(finosmeetings.from_archive)
+        self.assertTrue(finosmeetings.ssl_verify)
+
+        # When ssl_verify is deactivated
+        finosmeetings = FinosMeetingsClient(MEETINGS_URL, ssl_verify=False)
+
+        self.assertTrue(finosmeetings.base_url, MEETINGS_URL)
+        self.assertEqual(finosmeetings.max_retries, 5)
+        self.assertIsNone(finosmeetings.archive)
+        self.assertFalse(finosmeetings.from_archive)
+        self.assertFalse(finosmeetings.ssl_verify)
+
     @httpretty.activate
     def test_get_entries(self):
         """Test get_entries API call"""
