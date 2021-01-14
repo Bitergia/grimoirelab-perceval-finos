@@ -1,4 +1,4 @@
-# perceval-finos [![Build Status](https://travis-ci.org/Bitergia/grimoirelab-perceval-finos.svg?branch=master)](https://travis-ci.org/Bitergia/grimoirelab-perceval-finos) [![Coverage Status](https://img.shields.io/coveralls/Bitergia/grimoirelab-perceval-finos.svg)](https://coveralls.io/r/Bitergia/grimoirelab-perceval-finos?branch=master)
+# perceval-finos [![Build Status](https://github.com/Bitergia/grimoirelab-perceval-finos/workflows/build/badge.svg)](https://github.com/Bitergia/grimoirelab-perceval-finos/actions?query=workflow:build+branch:master+event:push) [![Coverage Status](https://img.shields.io/coveralls/Bitergia/grimoirelab-perceval-finos.svg)](https://coveralls.io/r/Bitergia/grimoirelab-perceval-finos?branch=master)
 
 Bundle of Perceval backends for FINOS ecosystem.
 
